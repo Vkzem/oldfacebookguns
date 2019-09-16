@@ -27,11 +27,11 @@ setInterval(() => {
     let divGun = getGunDiv()
     // console.log(divGun)
 
-    let sendALike = getLikeImg()
+    // let sendALike = getLikeImg()
     // console.log(sendALike)
 
 
-    let check = ((imgGun.length === 0) && (divGun.length === 0) && (sendALike.length === 0))
+    let check = ((imgGun.length === 0) && (divGun.length === 0))
     // console.log(`check is ${check}`)
 
     if (!check) {
@@ -51,10 +51,10 @@ setInterval(() => {
         }
 
 
-        if (!(sendALike.length === 0)) {
-            sendALike[0].children[0].src = smallUrl
-            sendALike[0].setAttribute('aria-label', 'Send a Like!')
-        }
+        // if (!(sendALike.length === 0)) {
+        //     sendALike[0].children[0].src = smallUrl
+        //     sendALike[0].setAttribute('aria-label', 'Send a Like!')
+        // }
 
     } else {
         // console.log('no guns to change')
