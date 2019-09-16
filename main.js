@@ -22,27 +22,42 @@ setInterval(() => {
 
 
     let imgGun = getImagesByAlt()
-    console.log(imgGun)
+    // console.log(imgGun)
 
     let divGun = getGunDiv()
-    console.log(divGun)
+    // console.log(divGun)
 
     let sendALike = getLikeImg()
+    // console.log(sendALike)
 
-    let i
-    for (i=0; i<imgGun.length; i++){
-        imgGun[i].src = smallUrl
-        imgGun[i].alt = 'OLDGUN'
-        // console.log('changed a small img src')
+
+    let check = ((imgGun.length === 0) && (divGun.length === 0) && (sendALike.length === 0))
+    // console.log(`check is ${check}`)
+
+    if (!check) {
+
+        let i
+        for (i = 0; i < imgGun.length; i++) {
+            imgGun[i].src = smallUrl
+            imgGun[i].alt = 'OLDGUN'
+            // console.log('changed a small img src')
+        }
+
+
+        for (i = 0; i < divGun.length; i++) {
+            divGun[i].children[0].src = bigUrl
+            divGun[i].setAttribute('aria-label', 'OLDGUN')
+            // console.log('changed a big img src')
+        }
+
+
+        if (!(sendALike.length === 0)) {
+            sendALike[0].children[0].src = smallUrl
+            sendALike[0].setAttribute('aria-label', 'Send a Like!')
+        }
+
+    } else {
+        // console.log('no guns to change')
     }
 
-
-    for (i=0; i<divGun.length; i++){
-        divGun[i].children[0].src = bigUrl
-        divGun[i].setAttribute('aria-label', 'OLDGUN')
-        console.log('changed a big img src')
-    }
-
-    sendALike[0].children[0].src = smallUrl
-
-}, 500)
+}, 300)
