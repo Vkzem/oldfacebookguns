@@ -1,0 +1,314 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Gimme Gun</title>
+    <!-- JS DEFAULT-->
+    <script src="popup.js"></script>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Roboto';
+            src: url(3e1af3ef546b9e6ecef9f3ba197bf7d2.ttf) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+        }
+
+        body {
+            width: 332px;
+            margin: 0 !important;
+            overflow: hidden !important;
+        }
+
+        * {
+            font-family: Roboto;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-repeat: no-repeat;
+            outline: none;
+        }
+    </style>
+    <style type="text/css">
+        .el-switch {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .el-switch.is-disabled .el-switch__core,
+        .el-switch.is-disabled .el-switch__label {
+            cursor: not-allowed;
+        }
+
+        .el-switch__label {
+            transition: .2s;
+            height: 20px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            vertical-align: middle;
+            color: #adb1bb;
+        }
+
+        .el-switch__label.is-active {
+            color: #41c298;
+        }
+
+        .el-switch__label--left {
+            margin-right: 10px;
+        }
+
+        .el-switch__label--right {
+            margin-left: 10px;
+        }
+
+        .el-switch__label * {
+            line-height: 1;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .el-switch__input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+
+        .el-switch__core {
+            margin: 0;
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 20px;
+            border: 1px solid #dcdfe6;
+            outline: none;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background: #dcdfe6;
+            cursor: pointer;
+            transition: border-color .3s, background-color .3s;
+            vertical-align: middle;
+        }
+
+        .el-switch__core:after {
+            content: "";
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            border-radius: 100%;
+            transition: all .3s;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+        }
+
+        .el-switch.is-checked .el-switch__core {
+            border-color: #41c298;
+            background-color: #41c298;
+        }
+
+        .el-switch.is-checked .el-switch__core::after {
+            left: 100%;
+            margin-left: -17px;
+        }
+
+        .el-switch.is-disabled {
+            opacity: 0.6;
+        }
+
+        .el-switch--wide .el-switch__label.el-switch__label--left span {
+            left: 10px;
+        }
+
+        .el-switch--wide .el-switch__label.el-switch__label--right span {
+            right: 10px;
+        }
+
+        .el-switch .label-fade-enter,
+        .el-switch .label-fade-leave-active {
+            opacity: 0;
+        }
+
+        .top-bar {
+            position: relative;
+        }
+
+        .top-bar * {
+            outline: none !important;
+        }
+
+        .top-bar .iconOff {
+            position: absolute;
+            top: 17px;
+            right: 21px;
+        }
+
+        .top-bar .iconOn {
+            position: absolute;
+            top: 17px;
+            right: 38px;
+        }
+
+        .popup-switcher {
+            position: absolute;
+            right: 16px;
+        }
+
+        .logo {
+            width: 82px;
+            margin-left: 16px;
+            height: 15px;
+            background: url(images/OLDGUN.svg) no-repeat;
+            background-size: contain;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 44px;
+        }
+
+        .off {
+            cursor: pointer;
+            right: 65px;
+            top: 4px;
+            position: absolute;
+            width: 30px;
+            height: 39px;
+            background-size: cover;
+            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNCIgaGVpZ2h0PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjODY4RTk3IiBkPSJNMTUuODIgNy44OTVsLS41NjYgMi42NDQtLjI3Ny4wODhhNi42NCA2LjY0IDAgMCAwLTEuMDUyLjQzNmwtLjI1OC4xMzQtMi4yNy0xLjQ3YS41LjUgMCAwIDAtLjYyNS4wNjZsLS45NzkuOTc5YS41LjUgMCAwIDAtLjA2Ni42MjVsMS40NyAyLjI3LS4xMzQuMjU4YTYuNjQgNi42NCAwIDAgMC0uNDM2IDEuMDUybC0uMDg4LjI3Ny0yLjY0NC41NjVhLjUuNSAwIDAgMC0uMzk1LjQ5djEuMzgzYS41LjUgMCAwIDAgLjM5NS40ODlsMi42NDQuNTY1LjA4OC4yNzdjLjExNS4zNjMuMjYxLjcxNS40MzYgMS4wNTJsLjEzNC4yNTgtMS40NyAyLjI3YS41LjUgMCAwIDAgLjA2Ni42MjVsLjk3OS45NzlhLjUuNSAwIDAgMCAuNjI1LjA2NmwyLjI3LTEuNDcuMjU4LjEzNGE2LjY0IDYuNjQgMCAwIDAgMS4wNTIuNDM2bC4yNzcuMDg4LjU2NSAyLjY0NGEuNS41IDAgMCAwIC40OS4zOTVoMS4zODNhLjUuNSAwIDAgMCAuNDg5LS4zOTVsLjU2NS0yLjY0NC4yNzctLjA4OGE2LjY0IDYuNjQgMCAwIDAgMS4wNTItLjQzNmwuMjU4LS4xMzQgMi4yNyAxLjQ3YS41LjUgMCAwIDAgLjYyNS0uMDY2bC45NzktLjk3OWEuNS41IDAgMCAwIC4wNjYtLjYyNWwtMS40Ny0yLjI3LjEzNC0uMjU4YTYuNjQgNi42NCAwIDAgMCAuNDM2LTEuMDUybC4wODgtLjI3NyAyLjY0NC0uNTY1YS41LjUgMCAwIDAgLjM5NS0uNDl2LTEuMzgzYS41LjUgMCAwIDAtLjM5NS0uNDg5bC0yLjY0NC0uNTY1LS4wODgtLjI3N2E2LjY0IDYuNjQgMCAwIDAtLjQzNi0xLjA1MmwtLjEzNC0uMjU4IDEuNDctMi4yN2EuNS41IDAgMCAwLS4wNjYtLjYyNWwtLjk3OS0uOTc5YS41LjUgMCAwIDAtLjYyNS0uMDY2bC0yLjI3IDEuNDctLjI1OC0uMTM0YTYuNjQgNi42NCAwIDAgMC0xLjA1Mi0uNDM2bC0uMjc3LS4wODgtLjU2NS0yLjY0NGEuNS41IDAgMCAwLS40OS0uMzk1aC0xLjM4M2EuNS41IDAgMCAwLS40ODkuMzk1ek0xNyAxOS43N2EyLjc3IDIuNzcgMCAxIDEgMC01LjU0IDIuNzcgMi43NyAwIDAgMSAwIDUuNTR6Ii8+Cjwvc3ZnPgo=) no-repeat;
+        }
+
+        .off:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <style type="text/css">
+        .content-wrapper {
+            box-shadow: inset 0px 10px 10px -7px #ccc, inset 0px -10px 10px -7px #ccc;
+            height: 436px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .content-wrapper .edit-button {
+            bottom: 94px;
+            min-height: 38px;
+            height: initial;
+        }
+
+        .content-wrapper.non-en .edit-button {
+            bottom: 105px;
+        }
+
+        .blue-rectangle {
+            width: 416px;
+            height: 69px;
+        }
+
+        .site-icon {
+            border-radius: 8px;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            width: 38px;
+            height: 38px;
+            background-color: white;
+            background-repeat: no-repeat;
+            background-position: 11px;
+            background-size: 16px;
+            margin-top: -19px;
+            margin-bottom: 18px;
+        }
+
+        .site-name {
+            margin-bottom: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 24px;
+            font-size: 20px;
+            text-align: center;
+            color: #50565d;
+        }
+
+        .button {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            width: 174px;
+            height: 53px;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .red-bgn {
+            transition: 0.3s ease-in-out;
+            background: #f26d6e;
+        }
+
+        .red-bgn:hover {
+            background-color: #e36666;
+        }
+
+        .green-bgn {
+            transition: 0.3s ease-in-out;
+            background: #41c298;
+        }
+
+        .green-bgn:hover {
+            background-color: #39a883;
+        }
+
+        .black-bgn {
+            background: #50565d;
+        }
+
+        .blocked-title {
+            font-size: 20px;
+            font-weight: normal;
+            color: #50565d;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body style="display: block;">
+    <div id="wrap">
+        <div class="top-bar">
+            <div class="logo"></div>
+            <div class="off"></div>
+            <div role="switch" aria-checked="true" class="el-switch popup-switcher is-checked"><input type="checkbox"
+                    id="header-switch" name="" true-value="true" false-value="false" class="el-switch__input">
+                <!----><span class="el-switch__core"
+                    style="width: 40px; border-color: rgb(65, 194, 152); background-color: rgb(65, 194, 152);"></span>
+                <!---->
+            </div> 
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

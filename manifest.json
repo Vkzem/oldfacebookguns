@@ -1,0 +1,31 @@
+{
+    "name": "Gimme Old Guns",
+    "version": "0.1.0",
+    "description": "did it for the clan",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+
+    "content_scripts": [{
+        "js": ["main.js"],
+        "matches": ["http://*/*", "https://*/*"],
+        "run_at": "document_idle"
+    }],
+
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+
+    "icons": {
+        "16": "images/32x32.png",
+        "32": "images/32x32.png",
+        "48": "images/128x128.png",
+        "128": "images/220x220.png"
+    },
+
+    "web_accessible_resources": [
+        "images/*.png"
+    ],
+    "manifest_version": 2
+
+}
